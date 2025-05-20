@@ -10,4 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Text {
     private String content;
+    //TODO Voice Message
+    //TODO File Attachment
+    //TODO File Attachment
 }
