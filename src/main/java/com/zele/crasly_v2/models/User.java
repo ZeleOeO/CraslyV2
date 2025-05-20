@@ -16,11 +16,16 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     private String userName;
     private String email;
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private SignInStatus signInStatus;
 
     @ManyToMany(mappedBy = "users")
     private Set<Chat> chats = new HashSet<>();
