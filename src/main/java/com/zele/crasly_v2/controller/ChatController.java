@@ -1,13 +1,11 @@
 package com.zele.crasly_v2.controller;
 
+import com.zele.crasly_v2.models.dto.chat.ChatCreateRequest;
 import com.zele.crasly_v2.models.dto.chat.ChatViewDTO;
 import com.zele.crasly_v2.service.ChatService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +24,10 @@ public class ChatController {
     @GetMapping("/{id}")
     public ResponseEntity<ChatViewDTO> getChatById(@PathVariable Long id) {
         return chatService.getChatById(id);
+    }
+
+    @PostMapping("/new")
+    public ResponseEntity<ChatViewDTO> createChat(@RequestBody ChatCreateRequest request) {
+        return chatService.createChat(request);
     }
 }

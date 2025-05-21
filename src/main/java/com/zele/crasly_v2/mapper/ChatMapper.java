@@ -1,5 +1,6 @@
 package com.zele.crasly_v2.mapper;
 
+import com.zele.crasly_v2.models.dto.chat.ChatCreateRequest;
 import com.zele.crasly_v2.models.dto.chat.ChatViewDTO;
 import com.zele.crasly_v2.models.entities.Chat;
 import org.springframework.stereotype.Component;
@@ -12,5 +13,11 @@ public class ChatMapper {
         chatViewDTO.setChatName(chat.getChatName());
         chatViewDTO.setCreatedAt(chat.getCreatedAt());
         return chatViewDTO;
+    }
+
+    public Chat chatCreateRequestToChat(ChatCreateRequest createRequest) {
+        Chat chat = new Chat();
+        chat.setChatName(createRequest.getChatName());
+        return chat;
     }
 }
