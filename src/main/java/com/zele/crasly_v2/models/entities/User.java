@@ -1,5 +1,6 @@
 package com.zele.crasly_v2.models;
 
+import com.zele.crasly_v2.models.enums.SignInStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
