@@ -2,6 +2,7 @@ package com.zele.crasly_v2.mapper;
 
 import com.zele.crasly_v2.dto.user.UserSignInRequest;
 import com.zele.crasly_v2.dto.user.UserSignUpRequest;
+import com.zele.crasly_v2.models.SignInStatus;
 import com.zele.crasly_v2.models.User;
 import com.zele.crasly_v2.dto.user.UserViewDto;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ public class UserMapper {
         user.setUserName(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
+        user.setSignInStatus(SignInStatus.SIGNED_OUT);
         return user;
     }
 }

@@ -27,7 +27,6 @@ public class AuthService {
        var user = userMapper.signUpRequestToUser(request);
        if (userRepository.existsByEmail(request.getEmail())) throw new UserAlreadyExistsException("User with email " + user.getEmail() + " already exists");
        if (!request.validatePassword()) throw new UserCreationErrorException("Passwords don't match");
-       user.setSignInStatus(SignInStatus.SIGNED_OUT);
        userRepository.save(user);
        return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.toUserView(user));
     }
@@ -39,6 +38,7 @@ public class AuthService {
         if (user == null) throw new UserNotFoundException("User with name " + request.getUsernameOrEmail() + " not found");
         if (!user.getPassword().equals(request.getPassword())) throw new UserNotAuthorizedException("User " + request.getUsernameOrEmail() + " password is incorrect");
         user.setSignInStatus(SignInStatus.SIGNED_IN);
+        userRepository.save(user);
         return ResponseEntity.status(HttpStatus.OK).body(userMapper.toUserView(user));
     }
 }
