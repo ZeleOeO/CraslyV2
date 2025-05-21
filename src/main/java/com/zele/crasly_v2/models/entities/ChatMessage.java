@@ -28,7 +28,7 @@ public class ChatMessage {
     private Chat chat;
 
     @Embedded
-    private Text text;
+    private Text text = new Text();
 
     @OneToMany(mappedBy = "parentMessage", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ChatMessage> replies = new HashSet<>();

@@ -2,6 +2,9 @@ package com.zele.crasly_v2.controller;
 
 import com.zele.crasly_v2.models.dto.chat.ChatCreateRequest;
 import com.zele.crasly_v2.models.dto.chat.ChatViewDTO;
+import com.zele.crasly_v2.models.dto.chatmessage.ChatMessageCreateRequest;
+import com.zele.crasly_v2.models.dto.chatmessage.ChatMessageViewDTO;
+import com.zele.crasly_v2.service.ChatMessageService;
 import com.zele.crasly_v2.service.ChatService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,7 @@ import java.util.List;
 public class ChatController {
 
     private final ChatService chatService;
+    private final ChatMessageService chatMessageService;
 
     @GetMapping("/all")
     public List<ChatViewDTO> getAllChats() {
@@ -29,5 +33,21 @@ public class ChatController {
     @PostMapping("/new")
     public ResponseEntity<ChatViewDTO> createChat(@RequestBody ChatCreateRequest request) {
         return chatService.createChat(request);
+    }
+
+    @GetMapping("/{chatId}/messages")
+    public List<ChatMessageViewDTO> getChatMessages(
+            @PathVariable Long chatId
+    ) {
+        return chatMessageService.getMessagesByChatId(chatId);
+    }
+
+    @PostMapping("/{chatId}/users/{userId}/send-message")
+    public ResponseEntity<ChatMessageViewDTO> sendChatMessage(
+            @PathVariable Long userId,
+            @PathVariable Long chatId,
+            @RequestBody ChatMessageCreateRequest request
+    ) {
+        return chatMessageService.createChatMessage(request, chatId, userId);
     }
 }
