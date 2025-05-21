@@ -1,16 +1,15 @@
 package com.zele.crasly_v2.mapper;
 
-import com.zele.crasly_v2.dto.user.UserSignInRequest;
-import com.zele.crasly_v2.dto.user.UserSignUpRequest;
-import com.zele.crasly_v2.models.SignInStatus;
-import com.zele.crasly_v2.models.User;
-import com.zele.crasly_v2.dto.user.UserViewDto;
+import com.zele.crasly_v2.models.dto.user.UserSignUpRequest;
+import com.zele.crasly_v2.models.enums.SignInStatus;
+import com.zele.crasly_v2.models.entities.User;
+import com.zele.crasly_v2.models.dto.user.UserViewDTO;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
-    public UserViewDto toUserView(User user) {
-        UserViewDto userViewDto = new UserViewDto();
+    public UserViewDTO toUserView(User user) {
+        UserViewDTO userViewDto = new UserViewDTO();
         userViewDto.setUsername(user.getUserName());
         userViewDto.setEmail(user.getEmail());
         return userViewDto;

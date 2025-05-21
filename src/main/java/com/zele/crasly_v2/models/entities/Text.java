@@ -1,4 +1,4 @@
-package com.zele.crasly_v2.models;
+package com.zele.crasly_v2.models.entities;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;

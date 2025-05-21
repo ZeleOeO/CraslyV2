@@ -1,6 +1,6 @@
 package com.zele.crasly_v2.service;
 
-import com.zele.crasly_v2.dto.user.UserViewDto;
+import com.zele.crasly_v2.models.dto.user.UserViewDTO;
 import com.zele.crasly_v2.exceptions.user.UserNotFoundException;
 import com.zele.crasly_v2.mapper.UserMapper;
 import com.zele.crasly_v2.repository.UserRepository;
@@ -17,14 +17,14 @@ public class UserService {
     private final UserMapper userMapper;
     private UserRepository userRepository;
 
-    public List<UserViewDto> getAllUsers() {
+    public List<UserViewDTO> getAllUsers() {
         return userRepository.findAll()
                 .stream()
                 .map(userMapper::toUserView)
                 .toList();
     }
 
-    public ResponseEntity<UserViewDto> getUserById(Long id) {
+    public ResponseEntity<UserViewDTO> getUserById(Long id) {
         var user = userRepository.findById(id).orElse(null);
         if (user == null) throw new UserNotFoundException("User with id " + id + " not found");
         return ResponseEntity.status(HttpStatus.OK).body(userMapper.toUserView(user));

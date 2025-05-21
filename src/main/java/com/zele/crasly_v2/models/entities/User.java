@@ -1,4 +1,4 @@
-package com.zele.crasly_v2.models;
+package com.zele.crasly_v2.models.entities;
 
 import com.zele.crasly_v2.models.enums.SignInStatus;
 import jakarta.persistence.*;

@@ -1,4 +1,4 @@
-package com.zele.crasly_v2.dto.user;
+package com.zele.crasly_v2.models.dto.user;
 
 public class UserLogInRequest {
 }

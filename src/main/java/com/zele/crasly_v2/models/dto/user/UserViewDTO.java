@@ -1,4 +1,4 @@
-package com.zele.crasly_v2.dto.user;
+package com.zele.crasly_v2.models.dto.user;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserViewDto {
+public class UserViewDTO {
     private String username;
     private String email;
 }

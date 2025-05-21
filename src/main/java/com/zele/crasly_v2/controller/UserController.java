@@ -1,6 +1,6 @@
 package com.zele.crasly_v2.controller;
 
-import com.zele.crasly_v2.dto.user.UserViewDto;
+import com.zele.crasly_v2.models.dto.user.UserViewDTO;
 import com.zele.crasly_v2.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +19,12 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/all")
-    public List<UserViewDto> getAllUsers() {
+    public List<UserViewDTO> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserViewDto> getUserById(@PathVariable Long id) {
+    public ResponseEntity<UserViewDTO> getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 }
