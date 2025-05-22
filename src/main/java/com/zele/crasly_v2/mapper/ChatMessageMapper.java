@@ -1,6 +1,5 @@
 package com.zele.crasly_v2.mapper;
 
-import com.zele.crasly_v2.models.dto.chat.ChatCreateRequest;
 import com.zele.crasly_v2.models.dto.chatmessage.ChatMessageViewDTO;
 import com.zele.crasly_v2.models.entities.ChatMessage;
 import org.springframework.stereotype.Component;
