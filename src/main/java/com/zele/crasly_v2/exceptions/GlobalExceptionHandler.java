@@ -1,6 +1,7 @@
 package com.zele.crasly_v2.exceptions;
 
 import com.zele.crasly_v2.exceptions.chat.ChatNotFoundException;
+import com.zele.crasly_v2.exceptions.chatmessage.ChatMessageNotFoundException;
 import com.zele.crasly_v2.exceptions.user.UserAlreadyExistsException;
 import com.zele.crasly_v2.exceptions.user.UserCreationErrorException;
 import com.zele.crasly_v2.exceptions.user.UserNotAuthorizedException;
@@ -34,6 +35,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ChatNotFoundException.class)
     public ResponseEntity<String> handleChatNotFoundException(ChatNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ChatMessageNotFoundException.class)
+    public ResponseEntity<String> handleChatMessageNotFoundException(ChatMessageNotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

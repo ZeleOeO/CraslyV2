@@ -50,4 +50,14 @@ public class ChatController {
     ) {
         return chatMessageService.createChatMessage(request, chatId, userId);
     }
+
+    @PostMapping("/{chatId}/users/{userId}/reply-message/{messageId}")
+    public ResponseEntity<ChatMessageViewDTO> replyChatMessage(
+            @PathVariable Long chatId,
+            @PathVariable Long userId,
+            @PathVariable Long messageId,
+            @RequestBody ChatMessageCreateRequest request
+    ) {
+        return chatMessageService.replyChatMessage(request, chatId, userId, messageId);
+    }
 }
