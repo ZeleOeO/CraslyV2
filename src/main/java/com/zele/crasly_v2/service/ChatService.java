@@ -20,6 +20,7 @@ public class ChatService {
     private final ChatRepository chatRepository;
     private final ChatMapper chatMapper;
     private final UserRepository userRepository;
+    private final UserService userService;
 
     public List<ChatViewDTO> getAllChats() {
         return chatRepository.findAll()
@@ -36,9 +37,9 @@ public class ChatService {
 
     public ResponseEntity<ChatViewDTO> createChat(ChatCreateRequest createRequest) {
         var chat = chatMapper.chatCreateRequestToChat(createRequest);
-        var user = userRepository.findById(createRequest.getUserId()).orElse(null);
+        var user = userRepository.findById(createRequest.getCreatorId()).orElse(null);
         if (user == null) throw new UserNotFoundException("User not found");
-        chat.getUsers().add(user);
+        chat.setUsers(userService.getAllUsersByUserId(createRequest.getParticipants()));
         chatRepository.save(chat);
         userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(chatMapper.toChatViewDTO(chat));
