@@ -1,5 +1,7 @@
 package com.zele.crasly_v2.service;
 
+import com.zele.crasly_v2.mapper.ChatMapper;
+import com.zele.crasly_v2.models.dto.chat.ChatViewDTO;
 import com.zele.crasly_v2.models.dto.user.UserViewDTO;
 import com.zele.crasly_v2.exceptions.user.UserNotFoundException;
 import com.zele.crasly_v2.mapper.UserMapper;
@@ -15,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserService {
     private final UserMapper userMapper;
+    private final ChatMapper chatMapper;
     private UserRepository userRepository;
 
     public List<UserViewDTO> getAllUsers() {
@@ -28,5 +31,14 @@ public class UserService {
         var user = userRepository.findById(id).orElse(null);
         if (user == null) throw new UserNotFoundException("User with id " + id + " not found");
         return ResponseEntity.status(HttpStatus.OK).body(userMapper.toUserView(user));
+    }
+
+    public List<ChatViewDTO> getAllChatsUserIsIn(Long userId) {
+        var user = userRepository.findById(userId).orElse(null);
+        if (user == null) throw new UserNotFoundException("User with id " + userId + " not found");
+        return user.getChats()
+                .stream()
+                .map(chatMapper::toChatViewDTO)
+                .toList();
     }
 }

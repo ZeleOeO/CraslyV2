@@ -1,5 +1,6 @@
 package com.zele.crasly_v2.controller;
 
+import com.zele.crasly_v2.models.dto.chat.ChatViewDTO;
 import com.zele.crasly_v2.models.dto.user.UserViewDTO;
 import com.zele.crasly_v2.service.UserService;
 import lombok.AllArgsConstructor;
@@ -26,5 +27,10 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserViewDTO> getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
+    }
+
+    @GetMapping("/{userId}/chats")
+    public List<ChatViewDTO> getUserChats(@PathVariable Long userId) {
+        return userService.getAllChatsUserIsIn(userId);
     }
 }
