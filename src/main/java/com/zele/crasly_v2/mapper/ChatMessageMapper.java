@@ -5,10 +5,7 @@ import com.zele.crasly_v2.models.dto.chatmessage.ChatMessageViewDTO;
 import com.zele.crasly_v2.models.entities.ChatMessage;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.stream.Collectors;
 
 @Component

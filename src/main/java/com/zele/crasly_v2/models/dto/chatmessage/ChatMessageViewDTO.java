@@ -19,6 +19,6 @@ public class ChatMessageViewDTO {
     public String chatName;
     public String senderName;
     public String chatMessage;
-    public HashMap<String ,String> replies;
+    public HashMap<String, String> replies;
     public String timestamp;
 }

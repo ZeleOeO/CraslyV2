@@ -3,7 +3,6 @@ package com.zele.crasly_v2.mapper;
 import com.zele.crasly_v2.models.dto.chat.ChatCreateRequest;
 import com.zele.crasly_v2.models.dto.chat.ChatViewDTO;
 import com.zele.crasly_v2.models.entities.Chat;
-import com.zele.crasly_v2.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

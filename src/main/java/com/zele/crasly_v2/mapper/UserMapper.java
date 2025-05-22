@@ -1,9 +1,9 @@
 package com.zele.crasly_v2.mapper;
 
 import com.zele.crasly_v2.models.dto.user.UserSignUpRequest;
-import com.zele.crasly_v2.models.enums.SignInStatus;
-import com.zele.crasly_v2.models.entities.User;
 import com.zele.crasly_v2.models.dto.user.UserViewDTO;
+import com.zele.crasly_v2.models.entities.User;
+import com.zele.crasly_v2.models.enums.SignInStatus;
 import org.springframework.stereotype.Component;
 
 @Component

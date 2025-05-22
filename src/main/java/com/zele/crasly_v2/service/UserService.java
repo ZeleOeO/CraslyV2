@@ -1,10 +1,10 @@
 package com.zele.crasly_v2.service;
 
+import com.zele.crasly_v2.exceptions.user.UserNotFoundException;
 import com.zele.crasly_v2.mapper.ChatMapper;
+import com.zele.crasly_v2.mapper.UserMapper;
 import com.zele.crasly_v2.models.dto.chat.ChatViewDTO;
 import com.zele.crasly_v2.models.dto.user.UserViewDTO;
-import com.zele.crasly_v2.exceptions.user.UserNotFoundException;
-import com.zele.crasly_v2.mapper.UserMapper;
 import com.zele.crasly_v2.models.entities.User;
 import com.zele.crasly_v2.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -46,6 +46,6 @@ public class UserService {
     }
 
     public Set<User> getAllUsersByUserId(List<Long> userIds) {
-       return new HashSet<>(userRepository.findAllById(userIds));
+        return new HashSet<>(userRepository.findAllById(userIds));
     }
 }

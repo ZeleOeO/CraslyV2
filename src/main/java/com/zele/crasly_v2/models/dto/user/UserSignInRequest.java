@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Data
@@ -22,6 +21,6 @@ public class UserSignInRequest {
     public boolean isEmail() {
         String regex = "^[\\w!#$%&’*+/=?{|}~^-]+(?:\\.[\\w!#$%&’*+/=?{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(regex);
-        return pattern.matcher(this.usernameOrEmail).matches() && this.usernameOrEmail!=null;
+        return pattern.matcher(this.usernameOrEmail).matches() && this.usernameOrEmail != null;
     }
 }
