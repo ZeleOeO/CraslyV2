@@ -63,3 +63,7 @@ Contributions are more than welcome, I'm still working on it though, so... keep 
 7. Push your change
 8. Make a pull request and reference your issue <br>
    Please stick to conventional methods of programming java and springboot applications, don't mess up my already spaghetti code
+
+
+## LICENSE
+The project is [MIT](LICENSE)
