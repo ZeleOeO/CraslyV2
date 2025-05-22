@@ -10,6 +10,7 @@ public class ChatMessageMapper {
     public ChatMessageViewDTO toChatMessageViewDTO(ChatMessage chatMessage) {
         ChatMessageViewDTO chatMessageViewDTO = new ChatMessageViewDTO();
         chatMessageViewDTO.setId(chatMessage.getId());
+        chatMessageViewDTO.setSenderName(chatMessage.getSender().getUserName());
         chatMessageViewDTO.setChatName(chatMessage.getChat().getChatName());
         chatMessageViewDTO.setChatMessage(chatMessage.getText().getContent());
         chatMessageViewDTO.setTimestamp(chatMessageViewDTO.getTimestamp());

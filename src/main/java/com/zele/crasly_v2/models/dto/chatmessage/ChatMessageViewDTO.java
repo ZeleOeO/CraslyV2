@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class ChatMessageViewDTO {
     public Long id;
     public String chatName;
+    public String senderName;
     public String chatMessage;
     public String timestamp;
 }
