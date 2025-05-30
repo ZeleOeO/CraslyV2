@@ -13,7 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: crasly_v2:1.0
+    image: ozonichi/crasly_v2:1.0
     container_name: crasly_v2-app
     depends_on:
       - db
