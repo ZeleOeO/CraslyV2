@@ -3,7 +3,7 @@ spring:
     name: Crasly_v2
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:zelcoin}
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:crasly-db}
     username: ${POSTGRES_USER:user}
     password: ${POSTGRES_PASSWORD:password}
 

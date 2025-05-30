@@ -5,7 +5,7 @@ A springboot version of my [Crasly]() core java application
 ![Java](https://img.shields.io/badge/Java-17%2B-orange?logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.1-green?logo=springboot&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-3.6%2B-blue?logo=apachemaven&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Containerized--db-blue?logo=docker&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Containerized-blue?logo=docker&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15%2B-blue?logo=postgresql&logoColor=white)
 
 ## Prerequisites
@@ -33,7 +33,7 @@ A springboot version of my [Crasly]() core java application
 
 ## Usage
 - Database
-  - To connect and check the database, it is hosted on `jdbc:postgresql://localhost:5432/crasly`
+  - To connect and check the database, it is hosted on `jdbc:postgresql://localhost:5432/crasly-db`
   - username: `user`
   - password: `password`
 - Application
