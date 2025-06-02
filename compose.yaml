@@ -1,6 +1,7 @@
 services:
   db:
     image: postgres:latest
+    container_name: db
     environment:
       POSTGRES_DB: crasly-db
       POSTGRES_USER: user
@@ -14,7 +15,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: ozonichi/crasly_v2:1.0
-    container_name: crasly_v2-app
+    container_name: app
     depends_on:
       - db
     environment:
