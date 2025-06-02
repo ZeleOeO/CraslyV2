@@ -1,7 +1,13 @@
 spring:
+  config:
+    activate:
+      on-profile: docker
   application:
     name: Crasly_v2
 
+  docker:
+    compose:
+      enabled: true
   datasource:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:crasly-db}
     username: ${POSTGRES_USER:user}
@@ -10,3 +16,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+springdoc:
+  api-docs:
+    path: /api-docs
