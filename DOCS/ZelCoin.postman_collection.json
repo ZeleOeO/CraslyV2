@@ -1,0 +1,961 @@
+{
+	"info": {
+		"_postman_id": "b37840a2-0d4b-453b-b22b-c60523ab8d6f",
+		"name": "ZelCoin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44390060",
+		"_collection_link": "https://osezeleoghedgebe.postman.co/workspace/Osezele-Oghedgebe's-Workspace~1d7dadef-9df4-4071-8f82-119b1a1b0fe9/collection/44390060-b37840a2-0d4b-453b-b22b-c60523ab8d6f?action=share&source=collection_link&creator=44390060"
+	},
+	"item": [
+		{
+			"name": "api/v1",
+			"item": [
+				{
+					"name": "chats",
+					"item": [
+						{
+							"name": "{chatId}",
+							"item": [
+								{
+									"name": "users/{userId}",
+									"item": [
+										{
+											"name": "send Chat Message",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"message\": \"fugiat laboris\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/chats/:chatId/users/:userId/send-message",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"chats",
+														":chatId",
+														"users",
+														":userId",
+														"send-message"
+													],
+													"variable": [
+														{
+															"key": "userId",
+															"value": "98796307",
+															"description": "(Required) "
+														},
+														{
+															"key": "chatId",
+															"value": "98796307",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"message\": \"fugiat laboris\"\n}",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/chats/:chatId/users/:userId/send-message",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"chats",
+																":chatId",
+																"users",
+																":userId",
+																"send-message"
+															],
+															"variable": [
+																{
+																	"key": "userId",
+																	"value": "98796307",
+																	"description": "(Required) "
+																},
+																{
+																	"key": "chatId",
+																	"value": "98796307",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": -30260233,\n  \"chatName\": \"cillum sint enim ut\",\n  \"senderName\": \"in mollit\",\n  \"chatMessage\": \"ut eu repre\",\n  \"replies\": {\n    \"consequat_6f\": \"culpa nisi officia\",\n    \"aliquipcd\": \"anim\",\n    \"dolore1\": \"eiusmod\",\n    \"sit_8\": \"anim\"\n  },\n  \"timestamp\": \"id in nulla dolor dolor\"\n}"
+												}
+											]
+										},
+										{
+											"name": "reply Chat Message",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"message\": \"fugiat laboris\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/chats/:chatId/users/:userId/reply-message/:messageId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"chats",
+														":chatId",
+														"users",
+														":userId",
+														"reply-message",
+														":messageId"
+													],
+													"variable": [
+														{
+															"key": "chatId",
+															"value": "98796307",
+															"description": "(Required) "
+														},
+														{
+															"key": "userId",
+															"value": "98796307",
+															"description": "(Required) "
+														},
+														{
+															"key": "messageId",
+															"value": "98796307",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "*/*"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"message\": \"fugiat laboris\"\n}",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/chats/:chatId/users/:userId/reply-message/:messageId",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"chats",
+																":chatId",
+																"users",
+																":userId",
+																"reply-message",
+																":messageId"
+															],
+															"variable": [
+																{
+																	"key": "chatId",
+																	"value": "98796307",
+																	"description": "(Required) "
+																},
+																{
+																	"key": "userId",
+																	"value": "98796307",
+																	"description": "(Required) "
+																},
+																{
+																	"key": "messageId",
+																	"value": "98796307",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"id\": -30260233,\n  \"chatName\": \"cillum sint enim ut\",\n  \"senderName\": \"in mollit\",\n  \"chatMessage\": \"ut eu repre\",\n  \"replies\": {\n    \"consequat_6f\": \"culpa nisi officia\",\n    \"aliquipcd\": \"anim\",\n    \"dolore1\": \"eiusmod\",\n    \"sit_8\": \"anim\"\n  },\n  \"timestamp\": \"id in nulla dolor dolor\"\n}"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "get Chat Messages",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/chats/:chatId/messages",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"chats",
+												":chatId",
+												"messages"
+											],
+											"variable": [
+												{
+													"key": "chatId",
+													"value": "98796307",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/chats/:chatId/messages",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"chats",
+														":chatId",
+														"messages"
+													],
+													"variable": [
+														{
+															"key": "chatId",
+															"value": "98796307",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"id\": 19434155,\n    \"chatName\": \"ex cupidatat nisi\",\n    \"senderName\": \"ut Ut\",\n    \"chatMessage\": \"enim ut eu Excepteur\",\n    \"replies\": {\n      \"Ut8_\": \"dolor dolore laborum ullamco ipsum\"\n    },\n    \"timestamp\": \"veniam consectetur do\"\n  },\n  {\n    \"id\": 53753283,\n    \"chatName\": \"veniam et\",\n    \"senderName\": \"occaecat dolore consectetur\",\n    \"chatMessage\": \"Excepteur et ipsum aliquip ut\",\n    \"replies\": {\n      \"ad5a\": \"id\",\n      \"amet_9\": \"veniam exercitation et\",\n      \"amet2\": \"ex non esse\",\n      \"commodo67\": \"nostrud irure do dolor minim\",\n      \"in6\": \"deserunt\"\n    },\n    \"timestamp\": \"culpa irure\"\n  }\n]"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "create Chat",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"creatorId\": -42847592,\n  \"chatName\": \"reprehenderit exercitation cupidatat aute\",\n  \"participants\": [\n    -70560438,\n    -63580219\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/chats/new",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chats",
+										"new"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"creatorId\": 95351787,\n  \"chatName\": \"minim consequat laborum Ut vel\",\n  \"participants\": [\n    74010240,\n    66309327\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/chats/new",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"chats",
+												"new"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 11979755,\n  \"chatName\": \"anim dolore\",\n  \"createdAt\": \"amet elit\"\n}"
+								}
+							]
+						},
+						{
+							"name": "get Chat By Id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/chats/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chats",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "98796307",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/chats/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"chats",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "98796307",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": 11979755,\n  \"chatName\": \"anim dolore\",\n  \"createdAt\": \"amet elit\"\n}"
+								}
+							]
+						},
+						{
+							"name": "get All Chats",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/chats/all",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"chats",
+										"all"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/chats/all",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"chats",
+												"all"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 71246518,\n    \"chatName\": \"dolore fugiat consectetur amet dolor\",\n    \"createdAt\": \"deserunt ex esse\"\n  },\n  {\n    \"id\": 60164100,\n    \"chatName\": \"mollit cillum\",\n    \"createdAt\": \"incididunt in esse et\"\n  }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "sign In",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"incididunt in\",\n  \"email\": \"Ut dolor occaecat\",\n  \"password\": \"sed nisi sit aute\",\n  \"confirmPassword\": \"culpa\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"sign-up"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"incididunt in\",\n  \"email\": \"Ut dolor occaecat\",\n  \"password\": \"sed nisi sit aute\",\n  \"confirmPassword\": \"culpa\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/auth/sign-up",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"sign-up"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"username\": \"elit nisi veniam ut\",\n  \"email\": \"Lorem\"\n}"
+								}
+							]
+						},
+						{
+							"name": "log In",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"usernameOrEmail\": \"fugiat eiusmod \",\n  \"password\": \"veniam irure do eu\",\n  \"email\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/auth/log-in",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"log-in"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"usernameOrEmail\": \"fugiat eiusmod \",\n  \"password\": \"veniam irure do eu\",\n  \"email\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/auth/log-in",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"log-in"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"username\": \"elit nisi veniam ut\",\n  \"email\": \"Lorem\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "get User Chats",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/users/:userId/chats",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":userId",
+										"chats"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "98796307",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/users/:userId/chats",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":userId",
+												"chats"
+											],
+											"variable": [
+												{
+													"key": "userId",
+													"value": "98796307",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": 71246518,\n    \"chatName\": \"dolore fugiat consectetur amet dolor\",\n    \"createdAt\": \"deserunt ex esse\"\n  },\n  {\n    \"id\": 60164100,\n    \"chatName\": \"mollit cillum\",\n    \"createdAt\": \"incididunt in esse et\"\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "get User By Id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "98796307",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "98796307",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"username\": \"elit nisi veniam ut\",\n  \"email\": \"Lorem\"\n}"
+								}
+							]
+						},
+						{
+							"name": "get All Users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/users/all",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"all"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/users/all",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"all"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"username\": \"consequat cillum officia\",\n    \"email\": \"exercitation Lorem amet ipsum incididunt\"\n  },\n  {\n    \"username\": \"consectetur in laborum\",\n    \"email\": \"sunt i\"\n  }\n]"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
