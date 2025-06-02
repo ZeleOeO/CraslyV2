@@ -9,5 +9,4 @@ public class CraslyV2Application {
     public static void main(String[] args) {
         SpringApplication.run(CraslyV2Application.class, args);
     }
-
 }
