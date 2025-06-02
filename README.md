@@ -50,7 +50,8 @@ A springboot version of my [Crasly]() core java application
   <br>
   You can access the docs by checking:
     - Markdown doc at [API-DOC](DOCS/API-DOC.md)
-    - [Postman Collection](DOCS/ZelCoin.postman_collection.json)
+    - [Postman Collection](DOCS/ZelCoin.postman_collection.json) _(Didn't know you still had to freaking sign up to use
+      ts, kinda annoying)_
     - There's also [swagger-ui](http://localhost:8080/swagger-ui/index.html/) for when the application is running
 
 ## Testing
