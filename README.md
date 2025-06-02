@@ -39,7 +39,11 @@ A springboot version of my [Crasly]() core java application
 - Application
   - port : `8080`
 - API Endpoints
-  - Will create an endpoint DOC later
+<br>
+  You can access the docs by checking:
+  - Markdown doc at [API-DOC](DOCS/API-DOC.md)
+  - [Postman Collection](DOCS/ZelCoin.postman_collection.json)
+  - There's also [swagger-ui](http://localhost:8080/swagger-ui/index.html/) for when the application is running
 
 ## Testing
 For now, don't have tests, but if i did
