@@ -10,15 +10,19 @@ import com.zele.crasly_v2.models.dto.user.UserSignUpRequest;
 import com.zele.crasly_v2.models.dto.user.UserViewDTO;
 import com.zele.crasly_v2.models.entities.User;
 import com.zele.crasly_v2.models.enums.SignInStatus;
+import com.zele.crasly_v2.models.security.UserPrincipal;
 import com.zele.crasly_v2.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class AuthService {
+public class AuthService implements UserDetailsService {
 
     private final UserMapper userMapper;
     private final UserRepository userRepository;
@@ -46,5 +50,12 @@ public class AuthService {
         user.setSignInStatus(SignInStatus.SIGNED_IN);
         userRepository.save(user);
         return ResponseEntity.status(HttpStatus.OK).body(userMapper.toUserView(user));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(username);
+        if (user == null) throw new UserNotFoundException("User with name " + username + " not found");
+        return new UserPrincipal(user);
     }
 }
