@@ -3,29 +3,26 @@ package com.zele.crasly_v2.service;
 import com.zele.crasly_v2.exceptions.user.UserAlreadyExistsException;
 import com.zele.crasly_v2.exceptions.user.UserCreationErrorException;
 import com.zele.crasly_v2.exceptions.user.UserNotAuthorizedException;
-import com.zele.crasly_v2.exceptions.user.UserNotFoundException;
 import com.zele.crasly_v2.mapper.UserMapper;
 import com.zele.crasly_v2.models.dto.user.UserSignInRequest;
 import com.zele.crasly_v2.models.dto.user.UserSignUpRequest;
 import com.zele.crasly_v2.models.dto.user.UserViewDTO;
-import com.zele.crasly_v2.models.entities.User;
-import com.zele.crasly_v2.models.enums.SignInStatus;
-import com.zele.crasly_v2.models.security.UserPrincipal;
 import com.zele.crasly_v2.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class AuthService implements UserDetailsService {
+public class AuthService {
 
     private final UserMapper userMapper;
     private final UserRepository userRepository;
+    private final AuthenticationManager authManager;
 
     public ResponseEntity<UserViewDTO> signup(UserSignUpRequest request) {
         var user = userMapper.signUpRequestToUser(request);
@@ -37,25 +34,10 @@ public class AuthService implements UserDetailsService {
     }
 
     public ResponseEntity<UserViewDTO> login(UserSignInRequest request) {
-        User user;
-        if (request.isEmail()) {
-            user = userRepository.findByEmail(request.getUsernameOrEmail());
-        } else {
-            user = userRepository.findByUserName(request.getUsernameOrEmail());
-        }
-        if (user == null)
-            throw new UserNotFoundException("User with name " + request.getUsernameOrEmail() + " not found");
-        if (!user.getPassword().equals(request.getPassword()))
-            throw new UserNotAuthorizedException("User " + request.getUsernameOrEmail() + " password is incorrect");
-        user.setSignInStatus(SignInStatus.SIGNED_IN);
-        userRepository.save(user);
+        Authentication authentication =
+                authManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        if (!authentication.isAuthenticated()) throw new UserNotAuthorizedException("User is not authenticated");
+        var user = userRepository.findByEmail(request.getEmail());
         return ResponseEntity.status(HttpStatus.OK).body(userMapper.toUserView(user));
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username);
-        if (user == null) throw new UserNotFoundException("User with name " + username + " not found");
-        return new UserPrincipal(user);
     }
 }
