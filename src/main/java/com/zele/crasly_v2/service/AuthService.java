@@ -23,6 +23,7 @@ public class AuthService {
     private final UserMapper userMapper;
     private final UserRepository userRepository;
     private final AuthenticationManager authManager;
+    private final JWTService jwtService;
 
     public ResponseEntity<UserViewDTO> signup(UserSignUpRequest request) {
         var user = userMapper.signUpRequestToUser(request);
@@ -33,11 +34,10 @@ public class AuthService {
         return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.toUserView(user));
     }
 
-    public ResponseEntity<UserViewDTO> login(UserSignInRequest request) {
+    public ResponseEntity<Object> login(UserSignInRequest request) {
         Authentication authentication =
                 authManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         if (!authentication.isAuthenticated()) throw new UserNotAuthorizedException("User is not authenticated");
-        var user = userRepository.findByEmail(request.getEmail());
-        return ResponseEntity.status(HttpStatus.OK).body(userMapper.toUserView(user));
+        return ResponseEntity.status(HttpStatus.OK).body(jwtService.generateToken(request.getEmail()));
     }
 }

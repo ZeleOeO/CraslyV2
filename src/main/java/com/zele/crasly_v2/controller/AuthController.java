@@ -23,7 +23,7 @@ public class AuthController {
     }
 
     @PostMapping("/log-in")
-    public ResponseEntity<UserViewDTO> logIn(@RequestBody UserSignInRequest request) {
+    public ResponseEntity<Object> logIn(@RequestBody UserSignInRequest request) {
         return authService.login(request);
     }
 }
