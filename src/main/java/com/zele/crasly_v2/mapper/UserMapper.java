@@ -4,6 +4,7 @@ import com.zele.crasly_v2.models.dto.user.UserSignUpRequest;
 import com.zele.crasly_v2.models.dto.user.UserViewDTO;
 import com.zele.crasly_v2.models.entities.User;
 import com.zele.crasly_v2.models.enums.SignInStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +20,7 @@ public class UserMapper {
         User user = new User();
         user.setUserName(request.getUsername());
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
+        user.setPassword(new BCryptPasswordEncoder(12).encode(request.getPassword()));
         user.setSignInStatus(SignInStatus.SIGNED_OUT);
         return user;
     }
