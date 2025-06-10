@@ -1,13 +1,12 @@
 package com.zele.crasly_v2.config;
 
-import com.zele.crasly_v2.service.MyUserDetailsService;
+import com.zele.crasly_v2.security.*;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,6 +14,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -22,15 +22,39 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final MyUserDetailsService userDetailsService;
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+
+    @Bean
+    public JwtFilter jwtFilter() {
+        return new JwtFilter(jwtService(), userDetailsService);
+    }
+
+    @Bean
+    public JwtExceptionFilter jwtExceptionFilter() {
+        return new JwtExceptionFilter();
+    }
+
+    @Bean
+    public JWTService jwtService() {
+        return new JWTService();
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable).
-                authorizeHttpRequests(request -> request
-                        .requestMatchers("/api/v1/auth/**","/swagger-ui/**", "/api-docs/**")
+        return http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers("/api/v1/auth/**", "/swagger-ui/**", "/api-docs/**")
                         .permitAll()
-                        .anyRequest().authenticated())
-                        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
+                        .anyRequest().authenticated()
+                )
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(customAuthenticationEntryPoint)
+                )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtExceptionFilter(), JwtFilter.class) // register exception filter before JwtFilter
+                .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class) // register jwt filter before username/password filter
+                .build();
     }
 
     @Bean

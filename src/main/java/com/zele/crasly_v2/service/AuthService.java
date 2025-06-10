@@ -8,6 +8,7 @@ import com.zele.crasly_v2.models.dto.user.UserSignInRequest;
 import com.zele.crasly_v2.models.dto.user.UserSignUpRequest;
 import com.zele.crasly_v2.models.dto.user.UserViewDTO;
 import com.zele.crasly_v2.repository.UserRepository;
+import com.zele.crasly_v2.security.JWTService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

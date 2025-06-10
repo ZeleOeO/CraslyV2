@@ -1,13 +1,14 @@
-package com.zele.crasly_v2.service;
+package com.zele.crasly_v2.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.security.Key;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Date;
@@ -41,8 +42,32 @@ public class JWTService {
                 .compact();
     }
 
-    private Key getKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-        return Keys.hmacShaKeyFor(keyBytes);
+    private SecretKey getKey() {
+        return Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
+    }
+
+    public boolean validateToken(String jwtToken, UserDetails userDetails) {
+        String username = getUsername(jwtToken);
+        return ((username.equals(userDetails.getUsername()) && !isTokenExpired(jwtToken)));
+    }
+
+    private boolean isTokenExpired(String jwtToken) {
+        return extractExpiration(jwtToken).before(new Date());
+    }
+
+    private Claims getClaimsFromJwt(String jwtToken) {
+        return Jwts.parser()
+                .verifyWith(getKey())
+                .build()
+                .parseSignedClaims(jwtToken)
+                .getPayload();
+    }
+
+    public String getUsername(String jwtToken) {
+        return getClaimsFromJwt(jwtToken).getSubject();
+    }
+
+    private Date extractExpiration(String jwtToken) {
+        return getClaimsFromJwt(jwtToken).getExpiration();
     }
 }

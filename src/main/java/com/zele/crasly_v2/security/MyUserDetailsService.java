@@ -1,4 +1,4 @@
-package com.zele.crasly_v2.service;
+package com.zele.crasly_v2.security;
 
 import com.zele.crasly_v2.exceptions.user.UserNotFoundException;
 import com.zele.crasly_v2.models.entities.User;
