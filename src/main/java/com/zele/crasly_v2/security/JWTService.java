@@ -1,5 +1,6 @@
 package com.zele.crasly_v2.security;
 
+import com.zele.crasly_v2.tools.SecretKeyGenerator;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -17,15 +18,10 @@ import java.util.Map;
 
 @Service
 public class JWTService {
-    private String secretKey = "";
+    private final String secretKey = SecretKeyGenerator.generateKey();
 
     public JWTService() {
-        try {
-            KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");
-            secretKey = Base64.getEncoder().encodeToString(keyGen.generateKey().getEncoded());
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     public String generateToken(String username) {

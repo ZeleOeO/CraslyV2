@@ -49,10 +49,9 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception
-                        .authenticationEntryPoint(customAuthenticationEntryPoint)
+                        .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtExceptionFilter(), JwtFilter.class) // register exception filter before JwtFilter
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class) // register jwt filter before username/password filter
                 .build();
     }
