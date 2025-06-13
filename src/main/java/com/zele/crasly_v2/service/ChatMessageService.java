@@ -9,10 +9,13 @@ import com.zele.crasly_v2.models.entities.ChatMessage;
 import com.zele.crasly_v2.repository.ChatMessageRepository;
 import com.zele.crasly_v2.repository.ChatRepository;
 import com.zele.crasly_v2.repository.UserRepository;
+import com.zele.crasly_v2.security.JWTService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import com.zele.crasly_v2.models.entities.User;
 
 import java.util.List;
 
@@ -23,6 +26,7 @@ public class ChatMessageService {
     private final ChatMessageMapper chatMessageMapper;
     private final UserRepository userRepository;
     private final ChatRepository chatRepository;
+    private final JWTService jWTService;
 
     public List<ChatMessageViewDTO> getMessagesByChatId(Long chatId) {
         return chatMessageRepository.findChatMessagesByChatId(chatId)
@@ -38,13 +42,12 @@ public class ChatMessageService {
                 .toList();
     }
 
-    public ResponseEntity<ChatMessageViewDTO> createChatMessage(ChatMessageCreateRequest createRequest, Long chatId, Long userId) {
+    public ResponseEntity<ChatMessageViewDTO> createChatMessage(ChatMessageCreateRequest createRequest, Long chatId, HttpServletRequest request) {
         ChatMessage chatMessage = new ChatMessage();
-        var user = userRepository.findById(userId).orElse(null);
+        var user = getUserFromRequest(request);
         var chat = chatRepository.findById(chatId).orElse(null);
-        if (user == null) throw new UserNotFoundException("User with id " + userId + " not found");
         if (chat == null) throw new ChatNotFoundException("Chat with id " + chatId + " not found");
-        if (!chat.getUsers().contains(user)) throw new UserNotFoundException("User with id " + userId + " not in chat");
+        if (!chat.getUsers().contains(user)) throw new UserNotFoundException("User with id " + user.getId() + " not in chat");
         chatMessage.setSender(user);
         chatMessage.setChat(chat);
         chatMessage.getText().setContent(createRequest.getMessage());
@@ -52,15 +55,14 @@ public class ChatMessageService {
         return ResponseEntity.status(HttpStatus.CREATED).body(chatMessageMapper.toChatMessageViewDTO(chatMessage));
     }
 
-    public ResponseEntity<ChatMessageViewDTO> replyChatMessage(ChatMessageCreateRequest replyRequest, Long chatId, Long userId, Long chatMessageId) {
+    public ResponseEntity<ChatMessageViewDTO> replyChatMessage(ChatMessageCreateRequest replyRequest, Long chatId, Long chatMessageId, HttpServletRequest servletRequest) {
         ChatMessage chatMessage = new ChatMessage();
-        var user = userRepository.findById(userId).orElse(null);
+        var user = getUserFromRequest(servletRequest);
         var chat = chatRepository.findById(chatId).orElse(null);
         var parentMessage = chatMessageRepository.findById(chatMessageId).orElse(null);
-        if (user == null) throw new UserNotFoundException("User with id " + userId + " not found");
         if (chat == null) throw new ChatNotFoundException("Chat with id " + chatId + " not found");
         if (parentMessage == null) throw new ChatNotFoundException("Chat with id " + chatMessageId + " not found");
-        if (!chat.getUsers().contains(user)) throw new UserNotFoundException("User with id " + userId + " not found");
+        if (!chat.getUsers().contains(user)) throw new UserNotFoundException("User with id " + user.getId() + " not found");
         if (!chat.getHistory().contains(parentMessage))
             throw new ChatNotFoundException("Chat with id " + chatMessageId + " not found");
         chatMessage.setSender(user);
@@ -69,5 +71,14 @@ public class ChatMessageService {
         chatMessage.setParentMessage(parentMessage);
         chatMessageRepository.save(chatMessage);
         return ResponseEntity.status(HttpStatus.CREATED).body(chatMessageMapper.toChatMessageViewDTO(chatMessage));
+    }
+
+    // Helper Methods
+    private User getUserFromRequest(HttpServletRequest request) {
+        String authToken = request.getHeader("Authorization").substring(7);
+        String email = jWTService.getUsername(authToken);
+        var user = userRepository.findByEmail(email);
+        if (user == null) throw new UserNotFoundException("User with email " + email + " not found");
+        return user;
     }
 }

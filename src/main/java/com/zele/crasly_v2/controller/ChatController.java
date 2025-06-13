@@ -6,6 +6,7 @@ import com.zele.crasly_v2.models.dto.chatmessage.ChatMessageCreateRequest;
 import com.zele.crasly_v2.models.dto.chatmessage.ChatMessageViewDTO;
 import com.zele.crasly_v2.service.ChatMessageService;
 import com.zele.crasly_v2.service.ChatService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +32,8 @@ public class ChatController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<ChatViewDTO> createChat(@RequestBody ChatCreateRequest request) {
-        return chatService.createChat(request);
+    public ResponseEntity<ChatViewDTO> createChat(@RequestBody ChatCreateRequest chatCreateRequest, HttpServletRequest servletRequest) {
+        return chatService.createChat(chatCreateRequest, servletRequest);
     }
 
     @GetMapping("/{chatId}/messages")
@@ -42,22 +43,22 @@ public class ChatController {
         return chatMessageService.getMessagesByChatId(chatId);
     }
 
-    @PostMapping("/{chatId}/users/{userId}/send-message")
+    @PostMapping("/{chatId}/send-message")
     public ResponseEntity<ChatMessageViewDTO> sendChatMessage(
-            @PathVariable Long userId,
             @PathVariable Long chatId,
-            @RequestBody ChatMessageCreateRequest request
+            @RequestBody ChatMessageCreateRequest request,
+            HttpServletRequest servletRequest
     ) {
-        return chatMessageService.createChatMessage(request, chatId, userId);
+        return chatMessageService.createChatMessage(request, chatId, servletRequest);
     }
 
-    @PostMapping("/{chatId}/users/{userId}/reply-message/{messageId}")
+    @PostMapping("/{chatId}/reply-message/{messageId}")
     public ResponseEntity<ChatMessageViewDTO> replyChatMessage(
             @PathVariable Long chatId,
-            @PathVariable Long userId,
             @PathVariable Long messageId,
-            @RequestBody ChatMessageCreateRequest request
+            @RequestBody ChatMessageCreateRequest createRequest,
+            HttpServletRequest servletRequest
     ) {
-        return chatMessageService.replyChatMessage(request, chatId, userId, messageId);
+        return chatMessageService.replyChatMessage(createRequest, chatId,  messageId, servletRequest);
     }
 }

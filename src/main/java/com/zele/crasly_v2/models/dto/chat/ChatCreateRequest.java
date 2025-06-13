@@ -14,7 +14,6 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatCreateRequest {
-    public Long creatorId;
-    public String chatName;
-    public List<Long> participants;
+    private String chatName;
+    private List<String> participants;
 }
