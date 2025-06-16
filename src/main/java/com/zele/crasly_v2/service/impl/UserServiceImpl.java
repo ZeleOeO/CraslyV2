@@ -9,6 +9,7 @@ import com.zele.crasly_v2.models.entities.User;
 import com.zele.crasly_v2.repository.UserRepository;
 import com.zele.crasly_v2.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.Set;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final ChatMapper chatMapper;
