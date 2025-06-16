@@ -16,36 +16,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Service
-@AllArgsConstructor
-public class UserService {
-    private final UserMapper userMapper;
-    private final ChatMapper chatMapper;
-    private UserRepository userRepository;
+public interface UserService {
+    List<UserViewDTO> getAllUsers();
 
-    public List<UserViewDTO> getAllUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(userMapper::toUserView)
-                .toList();
-    }
+    ResponseEntity<UserViewDTO> getUserById(Long id);
 
-    public ResponseEntity<UserViewDTO> getUserById(Long id) {
-        var user = userRepository.findById(id).orElse(null);
-        if (user == null) throw new UserNotFoundException("User with id " + id + " not found");
-        return ResponseEntity.status(HttpStatus.OK).body(userMapper.toUserView(user));
-    }
+    List<ChatViewDTO> getAllChatsUserIsIn(Long userId);
 
-    public List<ChatViewDTO> getAllChatsUserIsIn(Long userId) {
-        var user = userRepository.findById(userId).orElse(null);
-        if (user == null) throw new UserNotFoundException("User with id " + userId + " not found");
-        return user.getChats()
-                .stream()
-                .map(chatMapper::toChatViewDTO)
-                .toList();
-    }
-
-    public Set<User> getAllUsersByUserId(List<Long> userIds) {
-        return new HashSet<>(userRepository.findAllById(userIds));
-    }
+    Set<User> getAllUsersByUserId(List<Long> userIds);
 }
