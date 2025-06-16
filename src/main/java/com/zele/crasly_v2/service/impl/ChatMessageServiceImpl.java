@@ -6,6 +6,7 @@ import com.zele.crasly_v2.mapper.ChatMessageMapper;
 import com.zele.crasly_v2.models.dto.chatmessage.ChatMessageCreateRequest;
 import com.zele.crasly_v2.models.dto.chatmessage.ChatMessageViewDTO;
 import com.zele.crasly_v2.models.entities.ChatMessage;
+import com.zele.crasly_v2.models.entities.User;
 import com.zele.crasly_v2.repository.ChatMessageRepository;
 import com.zele.crasly_v2.repository.ChatRepository;
 import com.zele.crasly_v2.repository.UserRepository;
@@ -17,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.zele.crasly_v2.models.entities.User;
 
 import java.util.List;
 
@@ -50,7 +50,8 @@ public class ChatMessageServiceImpl implements ChatMessageService {
         var user = getUserFromRequest(request);
         var chat = chatRepository.findById(chatId).orElse(null);
         if (chat == null) throw new ChatNotFoundException("Chat with id " + chatId + " not found");
-        if (!chat.getUsers().contains(user)) throw new UserNotFoundException("User with id " + user.getId() + " not in chat");
+        if (!chat.getUsers().contains(user))
+            throw new UserNotFoundException("User with id " + user.getId() + " not in chat");
         chatMessage.setSender(user);
         chatMessage.setChat(chat);
         chatMessage.getText().setContent(createRequest.getMessage());
@@ -65,7 +66,8 @@ public class ChatMessageServiceImpl implements ChatMessageService {
         var parentMessage = chatMessageRepository.findById(chatMessageId).orElse(null);
         if (chat == null) throw new ChatNotFoundException("Chat with id " + chatId + " not found");
         if (parentMessage == null) throw new ChatNotFoundException("Chat with id " + chatMessageId + " not found");
-        if (!chat.getUsers().contains(user)) throw new UserNotFoundException("User with id " + user.getId() + " not found");
+        if (!chat.getUsers().contains(user))
+            throw new UserNotFoundException("User with id " + user.getId() + " not found");
         if (!chat.getHistory().contains(parentMessage))
             throw new ChatNotFoundException("Chat with id " + chatMessageId + " not found");
         chatMessage.setSender(user);

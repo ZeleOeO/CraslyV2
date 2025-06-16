@@ -59,6 +59,6 @@ public class ChatController {
             @RequestBody ChatMessageCreateRequest createRequest,
             HttpServletRequest servletRequest
     ) {
-        return chatMessageService.replyChatMessage(createRequest, chatId,  messageId, servletRequest);
+        return chatMessageService.replyChatMessage(createRequest, chatId, messageId, servletRequest);
     }
 }

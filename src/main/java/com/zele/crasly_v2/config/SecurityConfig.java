@@ -1,6 +1,8 @@
 package com.zele.crasly_v2.config;
 
-import com.zele.crasly_v2.security.*;
+import com.zele.crasly_v2.security.CustomAuthenticationEntryPoint;
+import com.zele.crasly_v2.security.JwtFilter;
+import com.zele.crasly_v2.security.MyUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
